@@ -4,7 +4,6 @@ const chokidar = require('chokidar');
 const fs = require('fs');
 const np = require('path');
 const esbuild = require('esbuild');
-const glob = require('glob');
 
 let helpers = imba2.helpers;
 let time = 0;
@@ -188,34 +187,24 @@ async function bundle(o) {
 	console.log(`built`);
 }
 
-glob("e2e_tests/*.imba", function (er, e2eFiles) {
-	let bundles = [{
-		entryPoints: ['src/imba/hmr.imba'], outdir: 'dist', platform: 'browser', format: 'esm'
-	}, {
-		entryPoints: ['src/imba/imba.imba'], outdir: 'dist', platform: 'browser', format: 'esm', outExtension: { ".js": ".mjs" },
-	}, {
-		entryPoints: ['src/imba/imba.imba'],
-		outExtension: { ".js": ".node.js" },
-		format: 'cjs',
-		outdir: 'dist',
-		platform: 'node'
-	}, {
-		entryPoints: ['bin/imba.imba', 'bin/imba-create.imba', 'program.imba', 'compiler.imba', 'workers.imba', 'loader.imba', 'playwright.config.imba'],
-		outExtension: { ".js": ".imba.js" },
-		minify: false,
-		external: ['chokidar', 'esbuild'],
-		outdir: '.',
-		format: 'cjs',
-		platform: 'node'
-	},{
-		entryPoints: e2eFiles,
-		outExtension: { ".js": ".js" },
-		format: 'cjs',
-		minify: false,
-		outdir: 'e2e_tests/dist',
-		external: ['@playwright/test'],
-		platform: 'node'
-	}]
-	
-	bundle(bundles)
-})
+let bundles = [{
+	entryPoints: ['src/imba/hmr.imba'], outdir: 'dist', platform: 'browser', format: 'esm'
+}, {
+	entryPoints: ['src/imba/imba.imba'], outdir: 'dist', platform: 'browser', format: 'esm', outExtension: { ".js": ".mjs" },
+}, {
+	entryPoints: ['src/imba/imba.imba'],
+	outExtension: { ".js": ".node.js" },
+	format: 'cjs',
+	outdir: 'dist',
+	platform: 'node'
+}, {
+	entryPoints: ['bin/imba.imba', 'bin/imba-create.imba', 'program.imba', 'compiler.imba', 'workers.imba', 'loader.imba'],
+	outExtension: { ".js": ".imba.js" },
+	minify: false,
+	external: ['chokidar', 'esbuild'],
+	outdir: '.',
+	format: 'cjs',
+	platform: 'node'
+}]
+
+bundle(bundles)
