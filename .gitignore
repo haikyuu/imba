@@ -2,6 +2,10 @@
 .cache
 .imba-cache
 
+e2e_tests/dist/**/*
+!e2e_tests/dist/.gitkeep
+test-results
+
 tmp
 test/perf
 test/dist
