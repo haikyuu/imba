@@ -3,9 +3,9 @@
 .imba-cache
 .vscode
 
-e2e_tests/dist/**/*
-!e2e_tests/dist/.gitkeep
-test-results
+packages/imba/e2e_tests/dist/**/*
+!packages/imba/e2e_tests/dist/.gitkeep
+packages/imba/test-results
 
 tmp
 test/perf

@@ -192,6 +192,7 @@ async function bundle(o) {
 	console.log(`built`);
 }
 
+glob("e2e_tests/*.imba", function (err, e2eFiles) {
 let bundles = [
 	{
 		entryPoints: ["src/imba/hmr.imba"],
@@ -229,6 +230,15 @@ let bundles = [
 		platform: "node",
 	},
 	{
+		entryPoints: e2eFiles,
+		outExtension: { ".js": ".js" },
+		format: 'cjs',
+		minify: false,
+		outdir: 'e2e_tests/dist',
+		external: ['@playwright/test'],
+		platform: 'node'
+	},
+	{
 		entryPoints: [
 			"bin/imba.imba",
 			"bin/imba-create.imba",
@@ -236,6 +246,7 @@ let bundles = [
 			"compiler.imba",
 			"workers.imba",
 			"loader.imba",
+			"playwright.config.imba",
 		],
 		outExtension: { ".js": ".imba.js" },
 		minify: false,
@@ -247,3 +258,4 @@ let bundles = [
 ];
 
 bundle(bundles)
+})

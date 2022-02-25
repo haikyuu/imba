@@ -46,7 +46,9 @@
     "watch": "node scripts/build.js -w",
     "prepublish": "node scripts/build-parser.js && node scripts/build.js",
     "create-example": "node bin/imba scripts/create-example.imba",
-    "generate-typings": "node bin/imba scripts/docs/generate-typings.imba"
+    "generate-typings": "node bin/imba scripts/docs/generate-typings.imba",
+    "test:e2e": "npx playwright test --config=playwright.config.imba.js",
+    "test:e2e-server": "node bin/imba e2e_tests/app/server.imba"
   },
   "bugs": "https://github.com/imba/imba/issues",
   "version": "2.0.0-alpha.201",
@@ -117,7 +119,10 @@
     "picomatch": "^2.2.2",
     "puppeteer": "^10.4.0",
     "tmp": "^0.2.1",
-    "workerpool": "^6.0.3"
+    "workerpool": "^6.0.3",
+    "express": "^4.17.3",
+    "glob": "^7.2.0",
+    "@playwright/test": "^1.19.2"
   },
   "dependencies": {
     "chokidar": "^3.4.3",
