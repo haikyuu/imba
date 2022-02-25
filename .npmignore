@@ -13,8 +13,8 @@ webpack.config.js
 attic/*
 test/
 scripts/bootstrap.compiler2.js
+scripts/docs
 .cache
-.travis.yml
 screenshot.png
 .gitattributes
 .editorconfig
